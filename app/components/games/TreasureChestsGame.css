@@ -1,0 +1,134 @@
+/* Ruta: /app/components/games/TreasureChestsGame.css */
+
+.chest-game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  width: 300px;
+  height: 300px; /* Tamaño fijo para el contenedor del juego */
+}
+
+/* --- El Cofre --- */
+.chest-wrapper {
+  position: relative;
+  width: 150px;
+  height: 120px;
+}
+.chest-base {
+  width: 100%;
+  height: 80px;
+  background: #8B4513; /* Marrón madera */
+  border: 5px solid #D4AF37; /* Dorado */
+  border-radius: 5px;
+  position: absolute;
+  bottom: 0;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+.chest-lid {
+  width: 110%;
+  height: 50px;
+  background: #A0522D;
+  border: 5px solid #D4AF37;
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  top: -10px;
+  left: -5%;
+  transform-origin: bottom center;
+  transition: transform 1s ease-in-out;
+}
+.chest-lock {
+  width: 30px;
+  height: 25px;
+  background: #D4AF37;
+  border: 2px solid #b8860b;
+  border-radius: 5px;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+/* Animación de apertura del cofre */
+.chest-wrapper.chest-open .chest-lid {
+  transform: rotateX(-120deg);
+}
+/* Efecto de luz cuando se abre */
+.chest-wrapper.chest-open::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 50px;
+  background: #ffd700;
+  border-radius: 50%;
+  box-shadow: 0 0 30px 20px #ffd700, 0 0 50px 40px #f9d71c;
+  animation: glow-pulse 1.5s infinite alternate;
+}
+
+@keyframes glow-pulse {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+
+/* --- Las Llaves --- */
+.keys-container {
+  display: flex;
+  gap: 1rem;
+}
+.key-button {
+  font-size: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  padding: 0;
+}
+.key-button:not(:disabled):hover {
+  transform: scale(1.2) translateY(-5px);
+}
+.key-button:disabled {
+  cursor: not-allowed;
+}
+
+/* Oculta las llaves no seleccionadas */
+.key-button.key-hidden {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+/* Animación de la llave seleccionada */
+.key-button.key-success, .key-button.key-fail {
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+/* Ganador */
+.key-button.key-success {
+  animation-name: key-to-lock-success;
+}
+@keyframes key-to-lock-success {
+  0%   { transform: translate(0, 0) scale(1.2); }
+  50%  { transform: translate(0, -100px) scale(1); color: #ffd700; }
+  60%  { transform: translate(0, -100px) rotate(90deg); }
+  70%  { transform: translate(0, -100px) rotate(90deg); }
+  100% { transform: translate(0, -100px) rotate(90deg); opacity: 0; }
+}
+
+/* Perdedor */
+.key-button.key-fail {
+  animation-name: key-to-lock-fail;
+}
+@keyframes key-to-lock-fail {
+  0%   { transform: translate(0, 0) scale(1.2); }
+  50%  { transform: translate(0, -100px) scale(1); color: #999; }
+  60%  { transform: translate(-10px, -100px) rotate(-15deg); }
+  70%  { transform: translate(10px, -100px) rotate(15deg); }
+  80%  { transform: translate(-10px, -100px) rotate(-15deg); }
+  100% { transform: translate(0, 100px) scale(0.5); opacity: 0; } /* Se "rompe" y cae */
+}

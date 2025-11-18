@@ -1,0 +1,92 @@
+/* Ruta: /app/components/games/CrocodileRaceGame.css */
+
+.race-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  
+  .race-track {
+    width: 100%;
+    padding: 1rem 0;
+    border: 4px dashed #555;
+    background: #2c3e50;
+    border-radius: 8px;
+  }
+  
+  .race-lane {
+    position: relative;
+    width: 95%; /* 5% de margen */
+    height: 50px;
+    margin: 10px auto;
+    background: #34495e;
+    border-radius: 5px;
+  }
+  
+  .crocodile {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    line-height: 1;
+    padding: 0 5px;
+    border-radius: 5px;
+    
+    /* La magia de la animación: transicionamos la propiedad 'left' */
+    /* La duración y el timing se setean en el JS */
+  }
+  
+  .selection-area {
+    text-align: center;
+    color: #ccc;
+  }
+  
+  .selection-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .croc-select-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    border: 2px solid var(--croc-color);
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .croc-select-button:hover:not(:disabled) {
+    background-color: var(--croc-color);
+    transform: translateY(-2px);
+  }
+  
+  .croc-select-button.selected {
+    background-color: var(--croc-color);
+    box-shadow: 0 0 15px var(--croc-color);
+    transform: scale(1.05);
+  }
+  
+  .play-button.race-button {
+    background: linear-gradient(45deg, #27ae60, #2ecc71);
+    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.5);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.8rem 2.5rem;
+    cursor: pointer;
+  }
+  
+  .play-button.race-button:disabled {
+    background: #555;
+    box-shadow: none;
+    cursor: not-allowed;
+  }

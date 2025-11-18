@@ -1,0 +1,103 @@
+/* Ruta: /app/components/games/WheelOfFortuneGame.css */
+
+.wheel-container {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wheel-pointer {
+  font-size: 50px;
+  color: #ff4141;
+  position: absolute;
+  top: 15px; /* Ajustado para el borde de la ruleta */
+  z-index: 10;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+}
+
+.wheel {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  border: 10px solid #ffd700;
+  background: #ccc;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.3);
+  /* Esta es la transición de giro y desaceleración */
+  transition: transform 8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  transform-origin: 100% 100%; /* Gira desde el centro */
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  border: 1px solid rgba(0,0,0,0.2);
+  box-sizing: border-box;
+  /* Transición para el efecto de brillo */
+  transition: filter 0.5s ease;
+}
+
+.segment-text {
+  display: block;
+  width: 100px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  top: 80px; /* Posiciona el texto en la parte ancha */
+  font-size: 14px;
+}
+
+/* --- ESTILO DE RESALTADO --- */
+/* Esta clase se aplica al segmento ganador */
+.segment.highlight {
+  filter: brightness(1.7) drop-shadow(0 0 15px #fff);
+  animation: pulse-winner 0.7s infinite alternate;
+}
+
+@keyframes pulse-winner {
+  from {
+    filter: brightness(1.7) drop-shadow(0 0 15px #fff);
+  }
+  to {
+    filter: brightness(1.2) drop-shadow(0 0 5px #fff);
+  }
+}
+/* --- FIN DEL ESTILO DE RESALTADO --- */
+
+.play-button.wheel-button {
+  margin-top: 20px;
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background: linear-gradient(45deg, #8e44ad, #9b59b6);
+  box-shadow: 0 5px 15px rgba(142, 68, 173, 0.5);
+  transition: transform 0.2s ease;
+}
+
+.play-button.wheel-button:not(:disabled):hover {
+    transform: scale(1.05);
+}
+
+.play-button.wheel-button:disabled {
+    background: #555;
+    cursor: not-allowed;
+}

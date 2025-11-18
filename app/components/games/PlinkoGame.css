@@ -1,0 +1,107 @@
+/* Ruta: /app/components/games/PlinkoGame.css */
+.plinko-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Aumentamos el espacio */
+  }
+  .plinko-board {
+    width: 300px;
+    height: 350px;
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+    border: 8px solid #bdc3c7;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+  }
+  .peg {
+    width: 10px;
+    height: 10px;
+    background-color: #ecf0f1;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+  .slot {
+    width: 33.33%;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+  .slot.lose { left: 0; background-color: #c0392b; }
+  .slot.lose:last-child { left: 66.66%; }
+  .slot.win { left: 33.33%; background-color: #27ae60; box-shadow: inset 0 0 10px #fff3a3; }
+  
+  .plinko-chip {
+    width: 30px;
+    height: 30px;
+    background-color: #f1c40f;
+    border-radius: 50%;
+    position: absolute;
+    top: -30px; /* Inicia fuera de la pantalla */
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid #f39c12;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.4);
+    /* Asignamos la animación aquí */
+    animation-duration: 3.5s;
+    animation-fill-mode: forwards; /* Mantiene el estado final */
+    animation-timing-function: cubic-bezier(0.4, 0, 0.9, 0.6); /* Simula gravedad */
+  }
+  
+  .plinko-chip.drop-win { 
+    animation-name: drop-to-win-slot;
+  }
+  .plinko-chip.drop-lose { 
+    animation-name: drop-to-lose-slot;
+  }
+  
+  /* Animación para la ranura ganadora (centro) */
+  @keyframes drop-to-win-slot {
+    0%   { transform: translate(-50%, 0); }
+    20%  { transform: translate(-100%, 80px) rotate(180deg); }
+    50%  { transform: translate(20%, 180px) rotate(360deg); }
+    100% { transform: translate(-50%, 335px) rotate(720deg); }
+  }
+  /* Animación para una de las ranuras perdedoras (izquierda) */
+  @keyframes drop-to-lose-slot {
+    0%   { transform: translate(-50%, 0); }
+    30%  { transform: translate(30%, 100px) rotate(150deg); }
+    60%  { transform: translate(-120%, 200px) rotate(400deg); }
+    100% { transform: translate(-200%, 335px) rotate(680deg); }
+  }
+  
+  .play-button.plinko-button {
+    padding: 0.8rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+    /* 👇 ¡Aquí está el cambio para el botón! */
+    border-radius: 50px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #1abc9c, #16a085);
+    box-shadow: 0 5px 15px rgba(26, 188, 156, 0.5);
+    transition: all 0.2s ease;
+  }
+  
+  .play-button.plinko-button:not(:disabled):hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(26, 188, 156, 0.7);
+  }
+  
+  .play-button.plinko-button:disabled {
+      background: #555;
+      box-shadow: none;
+      cursor: not-allowed;
+  }

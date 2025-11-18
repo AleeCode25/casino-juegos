@@ -1,0 +1,101 @@
+/* Ruta: /app/components/games/MemoryGame.css */
+
+.memory-game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 320px; /* Ancho (4 * 70px + 3 * 10px) */
+    height: 230px; /* Alto (3 * 70px + 2 * 10px) */
+  }
+  
+  .card {
+    width: 70px;
+    height: 70px;
+    perspective: 1000px; /* Efecto 3D */
+    cursor: pointer;
+    background-color: transparent;
+  }
+  
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+  /* La carta está volteada */
+  .card.is-flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  
+  /* Cara de adelante (la que se oculta) */
+  .card-front {
+    background: linear-gradient(45deg, #ffd700, #f9d71c);
+    color: #8B4513;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  /* Cara de atrás (la que se muestra al voltear) */
+  .card-back {
+    background-color: #f0f0f0;
+    color: #333;
+    transform: rotateY(180deg);
+  }
+  
+  /* --- CLASES ACTUALIZADAS --- */
+  .card-icon {
+    font-size: 2.5rem; /* Para la calavera 💀 */
+  }
+  
+  .card-text {
+    font-size: 0.75rem; /* 12px, para texto como "500 Fichas" */
+    font-weight: bold;
+    padding: 4px;
+    line-height: 1.2;
+  }
+  /* --- FIN DE LA ACTUALIZACIÓN --- */
+  
+  
+  /* Botón de Jugar */
+  .play-button.memory-button {
+    margin-top: 20px;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.5);
+    transition: all 0.2s ease;
+  }
+  
+  .play-button.memory-button:hover {
+    transform: translateY(-3px);
+  }
