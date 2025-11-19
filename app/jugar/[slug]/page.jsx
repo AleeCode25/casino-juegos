@@ -28,8 +28,7 @@ export default function GamePage() {
         if (storedUsername) {
             setPlayerUsername(storedUsername);
         } else {
-            // Comentado para que puedas probar sin el código maestro
-            // window.location.href = '/ingresar';
+            window.location.href = '/ingresar';
         }
 
         if (slug) {
